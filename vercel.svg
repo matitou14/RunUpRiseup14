@@ -1,0 +1,238 @@
+// ============================================================
+// NUTRITION DATA — Plan Matias 2026
+// Para editar la nutricion, modificar este archivo y redeploy.
+// ============================================================
+
+export type DayType = "sesion-larga" | "sesion-media" | "cuestas-series" | "descanso" | "recuperacion";
+
+export interface Meal {
+  title: string;
+  items: string[];
+  calories: number;
+}
+
+export interface NutritionDay {
+  name: string;
+  description: string;
+  calories: number;
+  color: string;
+  meals: Meal[];
+}
+
+export const NUTRITION_DAYS: Record<DayType, NutritionDay> = {
+  "sesion-larga": {
+    name: "Dia de sesion larga",
+    description: "Fondo 60–90 min — Mayor carga de hidratos",
+    calories: 2400,
+    color: "#2dcc8f",
+    meals: [
+      {
+        title: "Desayuno — 90 min antes",
+        items: ["Avena 80g con leche", "1 banana", "Cafe negro", "2 tostadas con ricota"],
+        calories: 550,
+      },
+      {
+        title: "Post-sesion — ventana 90 min",
+        items: ["Arroz blanco 150g cocido", "Pechuga pollo 150g", "Jugo naranja natural", "1 fruta"],
+        calories: 550,
+      },
+      {
+        title: "Almuerzo",
+        items: ["Papa o boniato 200g", "150g carne magra o pescado", "Ensalada verde + aceite oliva"],
+        calories: 550,
+      },
+      {
+        title: "Merienda",
+        items: ["Yogur griego 200g", "Nueces 30g", "1 fruta"],
+        calories: 300,
+      },
+      {
+        title: "Cena",
+        items: ["Pasta o arroz integral 100g seco", "Pollo o carne 120g", "Verduras salteadas"],
+        calories: 450,
+      },
+    ],
+  },
+  "sesion-media": {
+    name: "Dia de sesion media",
+    description: "Trote Z2 o HIIT 30–45 min — Balance moderado",
+    calories: 2200,
+    color: "#4a9eff",
+    meals: [
+      {
+        title: "Desayuno",
+        items: ["3 huevos revueltos", "1 tostada integral", "Cafe negro", "1 fruta"],
+        calories: 450,
+      },
+      {
+        title: "Pre-entreno si es noche — 30 min antes",
+        items: ["1 banana o fruta", "Mate o cafe negro"],
+        calories: 90,
+      },
+      {
+        title: "Post-sesion",
+        items: ["Yogur griego 200g", "1 fruta", "Avena o granola"],
+        calories: 300,
+      },
+      {
+        title: "Almuerzo",
+        items: ["Arroz integral 120g cocido", "Pollo 150g al horno", "Ensalada con aceite oliva"],
+        calories: 500,
+      },
+      {
+        title: "Cena",
+        items: ["150g carne o pescado", "Vegetales al horno", "2 huevos duros si falta proteina"],
+        calories: 450,
+      },
+    ],
+  },
+  "cuestas-series": {
+    name: "Dia de cuestas o series",
+    description: "Sesion de alta intensidad — Carga HC pre + proteina post",
+    calories: 2350,
+    color: "#f5a623",
+    meals: [
+      {
+        title: "Desayuno — 2 hs antes",
+        items: ["Avena 60g + banana", "Cafe negro", "1 tostada con miel"],
+        calories: 500,
+      },
+      {
+        title: "Post-sesion — critico 30–45 min",
+        items: ["Proteina whey 30g o 4 claras + 2 yemas", "Arroz blanco 100g", "Jugo naranja"],
+        calories: 450,
+      },
+      {
+        title: "Almuerzo",
+        items: ["Fideos o arroz 130g cocidos", "Carne 180g o pollo", "Ensalada simple"],
+        calories: 600,
+      },
+      {
+        title: "Merienda",
+        items: ["Yogur + fruta + 30g nueces"],
+        calories: 300,
+      },
+      {
+        title: "Cena liviana",
+        items: ["Sopa + 2 huevos", "Pan integral 1 rebanada", "Fruta"],
+        calories: 400,
+      },
+    ],
+  },
+  "descanso": {
+    name: "Dia de descanso",
+    description: "Sin sesion — Deficit mayor, priorizando proteina",
+    calories: 1900,
+    color: "#888780",
+    meals: [
+      {
+        title: "Desayuno",
+        items: ["2 huevos duros", "1 tostada integral", "Cafe negro", "Fruta pequeña"],
+        calories: 350,
+      },
+      {
+        title: "Almuerzo",
+        items: ["Ensalada grande con atun o pollo 180g", "Aceite oliva + limon", "1 fruta"],
+        calories: 500,
+      },
+      {
+        title: "Merienda",
+        items: ["Yogur griego natural 200g", "Algunas nueces"],
+        calories: 250,
+      },
+      {
+        title: "Cena",
+        items: ["Sopa de verduras", "150g carne o pescado", "Vegetales al vapor"],
+        calories: 450,
+      },
+    ],
+  },
+  "recuperacion": {
+    name: "Dia de recuperacion activa",
+    description: "Caminata o movilidad — HC bajos, proteina alta",
+    calories: 2000,
+    color: "#5DCAA5",
+    meals: [
+      {
+        title: "Desayuno",
+        items: ["3 claras + 1 yema revueltos", "Avena 40g", "Cafe negro", "1 fruta"],
+        calories: 380,
+      },
+      {
+        title: "Almuerzo",
+        items: ["Pollo 200g + vegetales al horno", "Quinoa 80g cocida", "Ensalada"],
+        calories: 520,
+      },
+      {
+        title: "Merienda",
+        items: ["Yogur griego + 1 fruta"],
+        calories: 220,
+      },
+      {
+        title: "Cena",
+        items: ["Pescado 180g", "Vegetales salteados con aceite oliva", "1 papa chica"],
+        calories: 480,
+      },
+    ],
+  },
+};
+
+export const MACROS: Record<DayType, { protein: number; carbs: number; fat: number }> = {
+  "sesion-larga": { protein: 160, carbs: 280, fat: 65 },
+  "sesion-media": { protein: 155, carbs: 230, fat: 70 },
+  "cuestas-series": { protein: 165, carbs: 260, fat: 60 },
+  "descanso": { protein: 150, carbs: 160, fat: 65 },
+  "recuperacion": { protein: 155, carbs: 190, fat: 65 },
+};
+
+export const NUTRITION_PRINCIPLES = [
+  {
+    icon: "🥩",
+    title: "Proteina — no negociar",
+    desc: "150–165g/dia todos los dias. Masa muscular protegida en deficit.",
+  },
+  {
+    icon: "🍚",
+    title: "Hidratos — periodizados",
+    desc: "Mas en dias de sesion larga, menos en descanso. No eliminarlos.",
+  },
+  {
+    icon: "💧",
+    title: "Hidratacion",
+    desc: "2.5–3 L/dia. 500ml en las 2 hs previas a cada sesion.",
+  },
+  {
+    icon: "🍷",
+    title: "Alcohol",
+    desc: "Meta: 0. Maximo tolerable: 1 copa fin de semana. Afecta recuperacion 24–48 hs.",
+  },
+  {
+    icon: "😴",
+    title: "Sueno — el mayor multiplicador",
+    desc: "7–8 hs. Menos de 6 anula las adaptaciones del entrenamiento.",
+  },
+  {
+    icon: "⚖️",
+    title: "Peso — paciencia",
+    desc: "Objetivo -8/10 kg en 20 semanas. 0.4–0.5 kg/sem sostenible.",
+  },
+];
+
+export const RACE_DAY_PROTOCOL = {
+  "10k-mayo": {
+    name: "10K Control — 31 mayo",
+    timing: "2 horas antes de largada",
+    items: ["Cafe negro", "2 tostadas con jamon cocido", "1 banana"],
+    hydration: "500ml agua antes de la largada",
+    avoid: "Sin lacteos, sin fibra excesiva, sin alimentos nuevos",
+    rule: "Solo lo que ya probaste en los entrenamientos",
+  },
+  backyard: {
+    name: "Backyard Ultra — 4 julio",
+    timing: "Cada 45 min durante la carrera",
+    items: ["Gel o dátiles + fruta + algo salado por vuelta", "Cafe cada 2-3 loops nocturno"],
+    hydration: "500ml por loop minimo",
+    avoid: "Nada nuevo en carrera. Solo testeado en entreno.",
+    rule: "Comer aunque no tengas hambre — el hambre llega tarde en el ultra",
+  },
+};
